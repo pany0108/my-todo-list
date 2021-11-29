@@ -64,3 +64,9 @@
 .ui.checkbox.checkbox-item input:checked ~ label:after {
   color: #fff;
 }
+.ui.checkbox.checkbox-item input:checked:focus ~ label:after {
+  color: #fff;
+}
+.ui.checkbox.checkbox-item input:focus ~ label:after {
+  color: #fff;
+}
