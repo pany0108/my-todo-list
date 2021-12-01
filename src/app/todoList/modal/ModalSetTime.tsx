@@ -7,7 +7,7 @@ interface Props {
   handleClose: any;
 }
 
-class ModalAlert extends Component<Props> {
+class ModalSetTime extends Component<Props> {
   render() {
     const { modalOpen, handleClose } = this.props;
 
@@ -21,11 +21,11 @@ class ModalAlert extends Component<Props> {
         >
           <Modal.Content style={{ textAlign: 'center' }}>
             <Icon
-              name="check circle outline"
+              name="clock outline"
               size="huge"
               style={{ color: '#fa6768' }}
             />
-            <Header>할 일을 입력해주세요!</Header>
+            <Header>시간을 설정해주세요!</Header>
           </Modal.Content>
           <Modal.Actions style={{ textAlign: 'center' }}>
             <Button onClick={handleClose}>OK</Button>
@@ -36,4 +36,4 @@ class ModalAlert extends Component<Props> {
   }
 }
 
-export default ModalAlert;
+export default ModalSetTime;

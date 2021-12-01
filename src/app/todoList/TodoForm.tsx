@@ -1,18 +1,29 @@
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
-import { Input, Segment } from 'semantic-ui-react';
+import {
+  Button,
+  Checkbox,
+  Input,
+  Segment,
+  Icon,
+  Grid,
+} from 'semantic-ui-react';
 import TodoListStore from '../service/store/TodoListStore';
-import { ModalAlert } from './modal';
+import { ModalNoContents } from './modal';
+import ModalSetTime from './modal/ModalSetTime';
 import TimeSet from './TimeSet';
+import '~/app/style/todoForm.css';
 
 interface State {
-  modalOpen: boolean;
+  modalOpenNoContents: boolean;
+  modalOpenSetTime: boolean;
 }
 
 @observer
 class TodoForm extends Component {
   state: State = {
-    modalOpen: false,
+    modalOpenNoContents: false,
+    modalOpenSetTime: false,
   };
 
   addItem = () => {
@@ -21,12 +32,17 @@ class TodoForm extends Component {
     const index =
       itemList.length > 0 ? itemList[itemList.length - 1].index + 1 : 1;
 
-    TodoListStore.title === ''
-      ? this.setState({ modalOpen: true })
-      : TodoListStore.addItem(index);
-
-    TodoListStore.title = '';
-    TodoListStore.time = '';
+    if (TodoListStore.title === '') {
+      this.setState({ modalOpenNoContents: true });
+    }
+    if (TodoListStore.title !== '' && TodoListStore.time === '') {
+      this.setState({ modalOpenSetTime: true });
+    }
+    if (TodoListStore.title !== '' && TodoListStore.time !== '') {
+      TodoListStore.addItem(index);
+      TodoListStore.title = '';
+      TodoListStore.time = '';
+    }
 
     // console.log('item added');
   };
@@ -35,6 +51,10 @@ class TodoForm extends Component {
     if (e.key === 'Enter') {
       this.addItem();
     }
+  };
+
+  resetInput = () => {
+    TodoListStore.title = '';
   };
 
   handleModalOpen = () => {
@@ -46,33 +66,62 @@ class TodoForm extends Component {
   };
 
   render() {
-    const { modalOpen } = this.state;
+    const { modalOpenNoContents, modalOpenSetTime } = this.state;
     const { title } = TodoListStore;
 
     return (
       <>
         <Segment className="todolist-form">
-          <Input
-            fluid
-            value={title}
-            onChange={(e: any) => {
-              TodoListStore.title = e.target.value;
-            }}
-            onKeyPress={this.handleKeyPress}
-            action={{
-              content: 'Add',
-              onClick: this.addItem,
-            }}
-            placeholder="뭐할까?"
-          />
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={16}>
+                <Input
+                  fluid
+                  value={title}
+                  onChange={(e: any) => {
+                    TodoListStore.title = e.target.value;
+                  }}
+                  onKeyPress={this.handleKeyPress}
+                  action={{
+                    className: TodoListStore.title === '' ? 'hide' : '',
+                    content: <Icon name="delete" fitted />,
+                    onClick: this.resetInput,
+                  }}
+                  placeholder="할 일을 입력해주세요"
+                />
+              </Grid.Column>
 
-          <TimeSet />
+              <Grid.Column width={16}>
+                <TimeSet />
+                <Checkbox label="종일" />
+              </Grid.Column>
+
+              <Grid.Column width={16}>
+                <Button
+                  inverted
+                  size="large"
+                  fluid
+                  onClick={() => {
+                    this.addItem();
+                  }}
+                >
+                  저장
+                </Button>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Segment>
 
-        <ModalAlert
-          modalOpen={modalOpen}
+        <ModalNoContents
+          modalOpen={modalOpenNoContents}
           handleClose={() => {
-            this.setState({ modalOpen: false });
+            this.setState({ modalOpenNoContents: false });
+          }}
+        />
+        <ModalSetTime
+          modalOpen={modalOpenSetTime}
+          handleClose={() => {
+            this.setState({ modalOpenSetTime: false });
           }}
         />
       </>

@@ -12,22 +12,29 @@ interface State {
 @observer
 class TimeSet extends Component {
   state: State = {
-    timeValue: new Date(),
+    timeValue: '',
   };
+
+  constructor(props: any) {
+    super(props);
+
+    TodoListStore.time = this.state.timeValue;
+  }
+
+  initTime = () => {};
 
   getTime = (newTimeValue: any) => {
     this.setState({ timeValue: newTimeValue });
 
-    let hour = newTimeValue.getHours();
-    let minutes = newTimeValue.getMinutes();
-    let ampm = '';
+    var hours = newTimeValue.getHours();
+    var minutes = newTimeValue.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
 
-    hour < 12 ? (ampm = 'am') : (ampm = 'pm');
-    hour > 12 ? (hour = hour - 12) : (hour = hour);
-    minutes === 0 ? (minutes = '00') : (minutes = minutes);
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
 
-    TodoListStore.time =
-      hour.toString() + ':' + minutes.toString() + ' ' + ampm;
+    TodoListStore.time = hours + ':' + minutes + ' ' + ampm;
   };
 
   render() {

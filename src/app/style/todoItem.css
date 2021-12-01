@@ -1,16 +1,21 @@
 .todo-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1.5rem 2rem;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 .todo-item + .todo-item {
   border-top: 1px solid #ddd;
 }
+.todo-item:hover {
+  box-shadow: inset 4px 0 0 #4899e9;
+}
 
 /* checkbox */
-.checkbox-item {
-  width: 100%;
-}
 .ui.checkbox.checkbox-item label {
   color: #444444;
 }
@@ -29,6 +34,7 @@
 
 /* time */
 .todo-item .meta {
+  margin-left: auto;
   white-space: nowrap;
 }
 

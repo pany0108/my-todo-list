@@ -1,1 +1,1 @@
-export { default as ModalAlert } from './ModalAlert';
+export { default as ModalNoContents } from './ModalNoContents';

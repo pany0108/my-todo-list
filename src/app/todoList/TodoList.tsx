@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Container, Grid, Segment } from 'semantic-ui-react';
+import { Container, Grid, Header, Segment } from 'semantic-ui-react';
 import { TodoListStore } from '~/app/service';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
@@ -78,9 +78,14 @@ class TodoList extends React.Component {
     return (
       <>
         <Container>
-          <Segment.Group raised>
+          <Segment.Group>
+            <Segment className="todolist-header" padded>
+              <Header textAlign="center" size="huge" inverted>
+                Todo List
+              </Header>
+            </Segment>
             <Segment
-              className="todolist-header"
+              className="todolist-info"
               textAlign="center"
               size="massive"
               padded

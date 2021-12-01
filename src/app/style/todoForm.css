@@ -1,0 +1,93 @@
+/* form */
+.ui.segment.todolist-form {
+  padding: 2rem 0;
+  border: none;
+}
+
+.ui.segment.todolist-form .column + .column {
+  margin-top: 1rem;
+}
+
+.ui.input > input {
+  padding: 1.3rem 4rem 1.3rem 2rem;
+  font-size: 1.1em;
+  font-family: 'Fira Sans Extra Condensed', 'Noto Sans KR', sans-serif;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 500rem;
+  -moz-border-radius: 500rem;
+  -ms-border-radius: 500rem;
+  -o-border-radius: 500rem;
+  border-radius: 500rem;
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.05);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.ui.input.focus > input,
+.ui.input > input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 500rem;
+  -moz-border-radius: 500rem;
+  -ms-border-radius: 500rem;
+  -o-border-radius: 500rem;
+  border-radius: 500rem;
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.25);
+}
+.ui.input > input::placeholder {
+  color: #f1f1f1;
+}
+.ui.action.input:not([class*='left action']) > input {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  -webkit-border-radius: 500rem !important;
+  -moz-border-radius: 500rem !important;
+  -ms-border-radius: 500rem !important;
+  -o-border-radius: 500rem !important;
+  border-radius: 500rem !important;
+}
+.ui.action.input:not([class*='left action']) > input:focus {
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+.ui.action.input > .button,
+.ui.action.input > .buttons {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  background: transparent;
+  box-shadow: none;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.ui.action.input > .button.hide,
+.ui.action.input > .buttons.hide {
+  display: none;
+}
+
+.ui.segment.todolist-form .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+  font-size: 1.1em;
+  font-family: 'Fira Sans Extra Condensed', 'Noto Sans KR', sans-serif;
+  line-height: 1.21428571em;
+}
+.ui.segment.todolist-form
+  .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+  height: auto;
+  padding: 1.3rem 4rem 1.3rem 2rem;
+}
+.ui.segment.todolist-form .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 500rem;
+  -moz-border-radius: 500rem;
+  -ms-border-radius: 500rem;
+  -o-border-radius: 500rem;
+  border-radius: 500rem;
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.05);
+}
+.ui.segment.todolist-form
+  .css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root:hover {
+  background: transparent;
+}
