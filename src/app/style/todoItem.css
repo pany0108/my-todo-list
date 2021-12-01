@@ -15,16 +15,21 @@
   color: #444444;
 }
 .ui.checkbox.checkbox-item label::before {
-  border-radius: 50%;
+  border-color: #b1b2b3;
+  border-width: 2px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
-  border-width: 2px;
-  border-color: #b1b2b3;
+  border-radius: 50%;
 }
 .ui.checkbox label:after {
   font-size: 0.786em;
+}
+
+/* time */
+.todo-item .meta {
+  white-space: nowrap;
 }
 
 /* delete button */
@@ -34,8 +39,8 @@
 
 /* hover */
 .ui.checkbox.checkbox-item:hover label {
-  text-decoration: line-through;
   color: rgba(68, 68, 68, 0.5);
+  text-decoration: line-through;
 }
 .ui.checkbox label:hover::before {
   border-color: #d4d4d5;
@@ -43,23 +48,23 @@
 
 /* checked */
 .ui.checkbox.checkbox-item.checked label {
-  text-decoration: line-through;
   color: rgba(68, 68, 68, 0.5);
+  text-decoration: line-through;
 }
 .ui.checkbox.checkbox-item input:focus ~ label:before {
-  border-color: #d4d4d5;
   background-color: #fff;
+  border-color: #d4d4d5;
 }
 .ui.checkbox.checkbox-item input:checked:focus ~ label:before,
 .ui.checkbox.checkbox-item
   input:not([type='radio']):indeterminate:focus
   ~ label:before {
-  border-color: #fa6a6a;
   background-color: #fa6a6a;
+  border-color: #fa6a6a;
 }
 .ui.checkbox.checkbox-item input:checked ~ label:before {
-  border-color: #fa6a6a;
   background-color: #fa6a6a;
+  border-color: #fa6a6a;
 }
 .ui.checkbox.checkbox-item input:checked ~ label:after {
   color: #fff;

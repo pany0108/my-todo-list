@@ -5,6 +5,7 @@ interface ItemType {
   index: number;
   title: string;
   checked: boolean;
+  time: any;
 }
 
 class TodoListStore {
@@ -17,6 +18,9 @@ class TodoListStore {
   @observable
   checked: boolean;
 
+  @observable
+  time: any;
+
   constructor() {
     this.itemList = [
       // { index: 1, title: 'Item 1', checked: false },
@@ -25,6 +29,7 @@ class TodoListStore {
     ];
     this.title = '';
     this.checked = false;
+    this.time = '';
   }
 
   @action
@@ -42,6 +47,7 @@ class TodoListStore {
       index,
       title: this.title,
       checked: false,
+      time: this.time,
     };
 
     await TodoListApi.addItem(payload);

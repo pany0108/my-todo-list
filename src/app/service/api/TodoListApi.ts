@@ -28,7 +28,7 @@ class TodoListApi {
   };
 
   checkItem = async (index: number, checked: boolean) => {
-    const data = await Axios.put(`http://localhost:80/item/${index}`, {
+    const data = await Axios.patch(`http://localhost:80/item/${index}`, {
       checked: !checked,
     }).catch((error: any) => error.response.data);
 

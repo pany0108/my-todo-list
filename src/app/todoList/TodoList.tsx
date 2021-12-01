@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container, Grid, Input, Segment } from 'semantic-ui-react';
-import Item from './Item';
-import '../todo.css';
-import TodoListStore from '../service/store/TodoListStore';
 import { observer } from 'mobx-react';
+import { Container, Grid, Segment } from 'semantic-ui-react';
+import { TodoListStore } from '~/app/service';
+import TodoItem from './TodoItem';
+import TodoForm from './TodoForm';
+import '~/app/style/todo.css';
 
 interface ItemType {
   index: number;
@@ -18,23 +19,6 @@ class TodoList extends React.Component {
 
     // console.log('first rendered');
   }
-
-  addItem = () => {
-    const { itemList } = TodoListStore;
-
-    const index =
-      itemList.length > 0 ? itemList[itemList.length - 1].index + 1 : 1;
-    TodoListStore.addItem(index);
-    TodoListStore.title = '';
-
-    // console.log('item added');
-  };
-
-  handleKeyPress = (e: any) => {
-    if (e.key === 'Enter') {
-      this.addItem();
-    }
-  };
 
   getCurrentDay = () => {
     var dateObj = new Date();
@@ -89,7 +73,7 @@ class TodoList extends React.Component {
   };
 
   render() {
-    const { itemList, title } = TodoListStore;
+    const { itemList } = TodoListStore;
 
     return (
       <>
@@ -120,25 +104,11 @@ class TodoList extends React.Component {
                 </Grid.Row>
               </Grid>
             </Segment>
-            <Segment className="todolist-form">
-              <Input
-                fluid
-                value={title}
-                onChange={(e: any) => {
-                  TodoListStore.title = e.target.value;
-                }}
-                onKeyPress={this.handleKeyPress}
-                action={{
-                  content: 'Add',
-                  onClick: this.addItem,
-                }}
-                placeholder="뭐할까?"
-              />
-            </Segment>
+            <TodoForm />
             <Segment className="todolist">
               {itemList.length > 0 ? (
                 itemList.map((data: ItemType, index: number) => (
-                  <Item key={data.index} index={index} />
+                  <TodoItem key={data.index} index={index} />
                 ))
               ) : (
                 <div className="no-data">

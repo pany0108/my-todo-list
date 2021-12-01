@@ -1,16 +1,15 @@
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
-import { Button, Checkbox } from 'semantic-ui-react';
-import TodoListStore from '../service/store/TodoListStore';
-
-import '../todoItem.css';
+import { Button, Checkbox, Item } from 'semantic-ui-react';
+import { TodoListStore } from '~/app/service';
+import '~/app/style/todoItem.css';
 
 interface Props {
   index: number;
 }
 
 @observer
-class Item extends Component<Props> {
+class TodoItem extends Component<Props> {
   checkItem = () => {
     const { index } = this.props;
     const { itemList } = TodoListStore;
@@ -31,7 +30,7 @@ class Item extends Component<Props> {
 
   render() {
     const { index } = this.props;
-    const { itemList } = TodoListStore;
+    const { itemList, time } = TodoListStore;
 
     return (
       <>
@@ -46,6 +45,7 @@ class Item extends Component<Props> {
             checked={itemList[index].checked ? true : false}
             onClick={this.checkItem}
           />
+          <Item.Meta>{itemList[index].time}</Item.Meta>
           <Button
             icon="close"
             basic
@@ -59,4 +59,4 @@ class Item extends Component<Props> {
   }
 }
 
-export default Item;
+export default TodoItem;

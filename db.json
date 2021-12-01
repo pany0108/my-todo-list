@@ -3,14 +3,30 @@
     {
       "id": 1,
       "index": 1,
-      "title": "리액트 공부하기",
-      "checked": false
+      "title": "출근",
+      "checked": false,
+      "time": "8:00 am"
     },
     {
       "id": 2,
       "index": 2,
-      "title": "리액트 복습하기",
-      "checked": false
+      "title": "점심",
+      "checked": false,
+      "time": "11:40 am"
+    },
+    {
+      "id": 3,
+      "index": 3,
+      "title": "퇴근",
+      "checked": false,
+      "time": "5:00 pm"
+    },
+    {
+      "id": 4,
+      "index": 4,
+      "title": "집도착",
+      "checked": false,
+      "time": "6:00 pm"
     }
   ]
 }
