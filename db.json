@@ -3,10 +3,18 @@
     {
       "id": 1,
       "index": 1,
-      "title": "123456",
+      "title": "리액트 공부하기",
       "checked": false,
       "time": "",
       "allDday": true
+    },
+    {
+      "id": 2,
+      "index": 2,
+      "title": "리액트 복습하기",
+      "checked": false,
+      "time": "6:00 pm",
+      "allDday": false
     }
   ]
 }

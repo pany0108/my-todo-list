@@ -12,13 +12,10 @@ import TodoListStore from '../service/store/TodoListStore';
 import { ModalNoContents, ModalNoTime } from './modal';
 import TimeSet from './TimeSet';
 import '~/app/style/todoForm.css';
-import { debug } from 'console';
 
 interface State {
   modalOpenNoContents: boolean;
   modalOpenSetTime: boolean;
-  resetTime: boolean;
-  // allDay: boolean;
 }
 
 @observer
@@ -26,33 +23,33 @@ class TodoForm extends Component {
   state: State = {
     modalOpenNoContents: false,
     modalOpenSetTime: false,
-    resetTime: false,
-    // allDay: false,
   };
 
   addItem = () => {
-    // const { allDay } = this.state;
     const { itemList, allDay } = TodoListStore;
 
     const index =
       itemList.length > 0 ? itemList[itemList.length - 1].index + 1 : 1;
 
+    // 할일 X
     if (TodoListStore.title === '') {
       this.setState({ modalOpenNoContents: true });
     }
+    // 할일 O , 시간 X
     if (TodoListStore.title !== '' && TodoListStore.time === '') {
       this.setState({ modalOpenSetTime: true });
     }
+    // 할일 O, 시간 O
     if (TodoListStore.title !== '' && TodoListStore.time !== '') {
       TodoListStore.addItem(index);
-      this.setState({ resetTime: true });
       TodoListStore.title = '';
       TodoListStore.time = '';
+      TodoListStore.allDay = false;
     }
-    if (allDay && TodoListStore.title !== '') {
-      TodoListStore.addItem(index);
+    // 할일 O, 종일 O
+    if (TodoListStore.title !== '' && allDay) {
       this.setState({ modalOpenSetTime: false });
-      this.setState({ resetTime: true });
+      TodoListStore.addItem(index);
       TodoListStore.title = '';
       TodoListStore.time = '';
       TodoListStore.allDay = false;
@@ -80,7 +77,7 @@ class TodoForm extends Component {
   };
 
   render() {
-    const { modalOpenNoContents, modalOpenSetTime, resetTime } = this.state;
+    const { modalOpenNoContents, modalOpenSetTime } = this.state;
     const { title } = TodoListStore;
 
     return (
@@ -109,7 +106,7 @@ class TodoForm extends Component {
                 width={16}
                 style={{ display: 'flex', alignItems: 'center' }}
               >
-                <TimeSet resetTime={resetTime} />
+                <TimeSet />
                 <Checkbox
                   className="all-day"
                   label="종일"

@@ -52,7 +52,7 @@ class TodoListStore {
       index,
       title: this.title,
       checked: false,
-      time: this.time,
+      time: this.allDay ? '' : this.time,
       allDday: this.allDay,
     };
 
