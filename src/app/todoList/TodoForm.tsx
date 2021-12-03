@@ -9,8 +9,7 @@ import {
   Grid,
 } from 'semantic-ui-react';
 import TodoListStore from '../service/store/TodoListStore';
-import { ModalNoContents } from './modal';
-import ModalSetTime from './modal/ModalSetTime';
+import { ModalNoContents, ModalNoTime } from './modal';
 import TimeSet from './TimeSet';
 import '~/app/style/todoForm.css';
 
@@ -91,21 +90,23 @@ class TodoForm extends Component {
                 />
               </Grid.Column>
 
-              <Grid.Column width={16}>
+              <Grid.Column
+                width={16}
+                style={{ display: 'flex', alignItems: 'center' }}
+              >
                 <TimeSet />
-                <Checkbox label="종일" />
-              </Grid.Column>
+                <Checkbox className="all-day" label="종일" toggle />
 
-              <Grid.Column width={16}>
                 <Button
+                  className="add-btn"
                   inverted
-                  size="large"
-                  fluid
+                  circular
                   onClick={() => {
                     this.addItem();
                   }}
+                  style={{ padding: '1.4rem 2rem', marginLeft: 'auto' }}
                 >
-                  저장
+                  <Icon name="add" /> ADD
                 </Button>
               </Grid.Column>
             </Grid.Row>
@@ -118,7 +119,7 @@ class TodoForm extends Component {
             this.setState({ modalOpenNoContents: false });
           }}
         />
-        <ModalSetTime
+        <ModalNoTime
           modalOpen={modalOpenSetTime}
           handleClose={() => {
             this.setState({ modalOpenSetTime: false });

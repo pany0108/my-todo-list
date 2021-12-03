@@ -35,7 +35,8 @@
   box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.25);
 }
 .ui.input > input::placeholder {
-  color: #f1f1f1;
+  color: #938aa8;
+  font-weight: 300;
 }
 .ui.action.input:not([class*='left action']) > input {
   position: relative;
@@ -67,10 +68,20 @@
   display: none;
 }
 
+/* 시간 설정 */
 .ui.segment.todolist-form .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
   font-size: 1.1em;
   font-family: 'Fira Sans Extra Condensed', 'Noto Sans KR', sans-serif;
   line-height: 1.21428571em;
+  -webkit-border-radius: 500rem;
+  -moz-border-radius: 500rem;
+  -ms-border-radius: 500rem;
+  -o-border-radius: 500rem;
+  border-radius: 500rem;
+}
+.ui.segment.todolist-form
+  .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused {
+  box-shadow: 0 2px 10px 0 rgba(31, 38, 135, 0.25);
 }
 .ui.segment.todolist-form
   .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
@@ -90,4 +101,30 @@
 .ui.segment.todolist-form
   .css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root:hover {
   background: transparent;
+}
+.ui.segment.todolist-form .css-i4bv87-MuiSvgIcon-root path {
+  color: #fff;
+}
+
+/* 종일 */
+.all-day {
+  margin-left: 1rem;
+}
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before,
+.ui.toggle.checkbox input:focus:checked ~ .box:before,
+.ui.toggle.checkbox input:focus:checked ~ label:before {
+  background-color: #666afb !important;
+}
+
+/* 추가 버튼 */
+.ui.segment.todolist-form .add-btn {
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+}
+.ui.segment.todolist-form .add-btn:hover {
+  color: #fff;
+  background: #666afb;
+  box-shadow: none !important;
 }

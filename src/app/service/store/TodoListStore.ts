@@ -68,6 +68,19 @@ class TodoListStore {
 
     this.setItemList();
   };
+
+  @action
+  getTime = (newTimeValue: any) => {
+    var hours = newTimeValue.getHours();
+    var minutes = newTimeValue.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    this.time = hours + ':' + minutes + ' ' + ampm;
+  };
 }
 
 export default new TodoListStore();

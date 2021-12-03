@@ -30,7 +30,7 @@ class TodoItem extends Component<Props> {
 
   render() {
     const { index } = this.props;
-    const { itemList, time } = TodoListStore;
+    const { itemList } = TodoListStore;
 
     return (
       <>

@@ -12,29 +12,7 @@ interface State {
 @observer
 class TimeSet extends Component {
   state: State = {
-    timeValue: '',
-  };
-
-  constructor(props: any) {
-    super(props);
-
-    TodoListStore.time = this.state.timeValue;
-  }
-
-  initTime = () => {};
-
-  getTime = (newTimeValue: any) => {
-    this.setState({ timeValue: newTimeValue });
-
-    var hours = newTimeValue.getHours();
-    var minutes = newTimeValue.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
-
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
-
-    TodoListStore.time = hours + ':' + minutes + ' ' + ampm;
+    timeValue: new Date(),
   };
 
   render() {
@@ -46,7 +24,8 @@ class TimeSet extends Component {
           <TimePicker
             value={timeValue}
             onChange={(newTimeValue: any) => {
-              this.getTime(newTimeValue);
+              TodoListStore.getTime(newTimeValue);
+              this.setState({ timeValue: newTimeValue });
             }}
             renderInput={(params: any) => <TextField {...params} />}
           />

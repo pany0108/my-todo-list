@@ -7,7 +7,7 @@ interface Props {
   handleClose: any;
 }
 
-class ModalSetTime extends Component<Props> {
+class ModalNoTime extends Component<Props> {
   render() {
     const { modalOpen, handleClose } = this.props;
 
@@ -36,4 +36,4 @@ class ModalSetTime extends Component<Props> {
   }
 }
 
-export default ModalSetTime;
+export default ModalNoTime;
