@@ -9,20 +9,25 @@ interface State {
   timeValue: any;
 }
 
+interface Props {
+  resetTime: boolean;
+}
+
 @observer
-class TimeSet extends Component {
+class TimeSet extends Component<Props> {
   state: State = {
     timeValue: new Date(),
   };
 
   render() {
     const { timeValue } = this.state;
+    const { resetTime } = this.props;
 
     return (
       <>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <TimePicker
-            value={timeValue}
+            value={resetTime ? new Date() : timeValue}
             onChange={(newTimeValue: any) => {
               TodoListStore.getTime(newTimeValue);
               this.setState({ timeValue: newTimeValue });
