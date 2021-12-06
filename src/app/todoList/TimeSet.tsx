@@ -12,7 +12,7 @@ interface State {
 @observer
 class TimeSet extends Component {
   state: State = {
-    timeValue: new Date(),
+    timeValue: '',
   };
 
   render() {

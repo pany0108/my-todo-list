@@ -4,12 +4,36 @@ import { Button, Checkbox, Item } from 'semantic-ui-react';
 import { TodoListStore } from '~/app/service';
 import '~/app/style/todoItem.css';
 
-interface Props {
+interface Prop {
   index: number;
 }
 
+interface State {
+  isMoreBtnClicked: boolean;
+}
+
 @observer
-class TodoItem extends Component<Props> {
+class TodoItem extends Component<Prop> {
+  private readonly moreRef: React.RefObject<any>;
+
+  state: State = {
+    isMoreBtnClicked: false,
+  };
+
+  constructor(props: Prop) {
+    super(props);
+
+    this.moreRef = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.initMoreBtn);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.initMoreBtn);
+  }
+
   checkItem = () => {
     const { index } = this.props;
     const { itemList } = TodoListStore;
@@ -28,16 +52,21 @@ class TodoItem extends Component<Props> {
     // console.log('item deleted');
   };
 
+  initMoreBtn = (event: any) => {
+    if (!this.moreRef.current.contains(event.target)) {
+      this.setState({ isMoreBtnClicked: false });
+    }
+  };
+
   render() {
+    const { isMoreBtnClicked } = this.state;
     const { index } = this.props;
     const { itemList } = TodoListStore;
 
     return (
       <>
         <div
-          className={
-            itemList[index].checked ? 'todo-item checked' : 'todo-item'
-          }
+          className={`todo-item ${itemList[index].checked ? 'checked' : ''}`}
         >
           <Checkbox
             className="checkbox-item"
@@ -46,13 +75,30 @@ class TodoItem extends Component<Props> {
             onClick={this.checkItem}
           />
           <Item.Meta>{itemList[index].time}</Item.Meta>
-          <Button
-            icon="close"
-            basic
-            circular
-            compact
-            onClick={this.deleteItem}
-          ></Button>
+          <div ref={this.moreRef}>
+            <Button.Group>
+              <Button
+                className="more-btn"
+                icon="ellipsis horizontal"
+                compact
+                onClick={() => {
+                  this.setState({ isMoreBtnClicked: !isMoreBtnClicked });
+                }}
+              ></Button>
+
+              <Button
+                className={`del-btn ${isMoreBtnClicked ? 'shown' : ''}`}
+                icon="trash alternate outline"
+                compact
+                onClick={this.deleteItem}
+              ></Button>
+              <Button
+                className={`edit-btn ${isMoreBtnClicked ? 'shown' : ''}`}
+                icon="edit"
+                compact
+              ></Button>
+            </Button.Group>
+          </div>
         </div>
       </>
     );
