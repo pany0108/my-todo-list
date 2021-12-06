@@ -34,6 +34,14 @@ class TodoListApi {
 
     return data;
   };
+
+  editItem = async (index: number, title: string) => {
+    const data = await Axios.patch(`http://localhost:80/item/${index}`, {
+      title: title,
+    }).catch((error: any) => error.response.data);
+
+    return data;
+  };
 }
 
 export default new TodoListApi();

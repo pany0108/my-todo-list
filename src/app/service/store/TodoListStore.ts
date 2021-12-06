@@ -76,6 +76,13 @@ class TodoListStore {
   };
 
   @action
+  editItem = async (index: number, title: string) => {
+    await TodoListApi.editItem(index, title);
+
+    this.setItemList();
+  };
+
+  @action
   getTime = (newTimeValue: any) => {
     var hours = newTimeValue.getHours();
     var minutes = newTimeValue.getMinutes();
