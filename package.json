@@ -50,9 +50,6 @@
     "build": "GENERATE_SOURCEMAP=false react-app-rewired build",
     "test": "react-app-rewired test"
   },
-  "publishConfig": {
-    "registry": "https://nuriflex.co.kr/repository/npm-private/"
-  },
   "browserslist": {
     "production": [
       ">0.2%",

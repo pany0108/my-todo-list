@@ -53,7 +53,7 @@ class TodoListStore {
       title: this.title,
       checked: false,
       time: this.allDay ? '' : this.time,
-      allDday: this.allDay,
+      allDay: this.allDay,
     };
 
     await TodoListApi.addItem(payload);
@@ -84,15 +84,15 @@ class TodoListStore {
 
   @action
   getTime = (newTimeValue: any) => {
-    var hours = newTimeValue.getHours();
-    var minutes = newTimeValue.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
+    let hours = newTimeValue.getHours();
+    let minutes = newTimeValue.getMinutes();
+    const ampm = hours >= 12 ? 'pm' : 'am';
 
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes < 10 ? '0' + minutes : minutes;
+    hours %= 12;
+    hours = hours || 12;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    this.time = hours + ':' + minutes + ' ' + ampm;
+    this.time = `${hours}:${minutes} ${ampm}`;
   };
 }
 

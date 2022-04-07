@@ -1,6 +1,8 @@
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
-import { Button, Checkbox, Icon, Input, Item } from 'semantic-ui-react';
+import {
+  Button, Checkbox, Input, Item,
+} from 'semantic-ui-react';
 import { TodoListStore } from '~/app/service';
 import '~/app/style/todoItem.css';
 
@@ -16,6 +18,7 @@ interface State {
 @observer
 class TodoItem extends Component<Prop> {
   private readonly moreRef: React.RefObject<any>;
+
   private readonly editRef: React.RefObject<any>;
 
   state: State = {
@@ -80,66 +83,66 @@ class TodoItem extends Component<Prop> {
   };
 
   render() {
-    const { isMoreBtnClicked, isEditBtnClicked } = this.state;
     const { index } = this.props;
+    const { isMoreBtnClicked, isEditBtnClicked } = this.state;
     const { itemList } = TodoListStore;
 
     return (
       <>
         <div
-          className={`todo-item ${itemList[index].checked ? 'checked' : ''}`}
+          className={ `todo-item ${itemList[index].checked ? 'checked' : ''}` }
         >
           <Checkbox
-            className={`checkbox-item ${isEditBtnClicked ? 'hide' : ''}`}
-            label={itemList[index].title}
-            checked={itemList[index].checked ? true : false}
-            onClick={this.checkItem}
+            className={ `checkbox-item ${isEditBtnClicked ? 'hide' : ''}` }
+            label={ itemList[index].title }
+            checked={ !!itemList[index].checked }
+            onClick={ this.checkItem }
           />
 
           <Input
-            className={`edit-input action ${isEditBtnClicked ? '' : 'hide'}`}
+            className={ `edit-input action ${isEditBtnClicked ? '' : 'hide'}` }
           >
             <input
-              value={itemList[index].title}
-              onChange={(e: any) => {
+              value={ itemList[index].title }
+              onChange={ (e: any) => {
                 itemList[index].title = e.target.value;
-              }}
-              onKeyPress={this.handleKeyPress}
-              ref={this.editRef}
+              } }
+              onKeyPress={ this.handleKeyPress }
+              ref={ this.editRef }
             />
-            <Button icon="check" onClick={this.editItem} />
+            <Button icon="check" onClick={ this.editItem } />
           </Input>
 
-          <Item.Meta>{itemList[index].time}</Item.Meta>
-          <div ref={this.moreRef}>
+          <Item.Meta>{ itemList[index].time }</Item.Meta>
+          <div ref={ this.moreRef }>
             <Button.Group>
               <Button
                 className="more-btn"
                 icon="ellipsis horizontal"
                 compact
-                onClick={() => {
+                onClick={ () => {
                   this.setState({ isMoreBtnClicked: !isMoreBtnClicked });
-                }}
-              ></Button>
+                } }
+              />
 
               <Button
-                className={`del-btn ${isMoreBtnClicked ? 'shown' : ''}`}
+                className={ `del-btn ${isMoreBtnClicked ? 'shown' : ''}` }
                 icon="trash alternate outline"
                 compact
-                onClick={this.deleteItem}
-              ></Button>
+                onClick={ this.deleteItem }
+              />
               <Button
-                className={`edit-btn ${isMoreBtnClicked ? 'shown' : ''}`}
+                className={ `edit-btn ${isMoreBtnClicked ? 'shown' : ''}` }
                 icon="edit"
                 compact
-                onClick={() => {
+                onClick={ () => {
                   this.setState({
                     isEditBtnClicked: true,
                     isMoreBtnClicked: !isMoreBtnClicked,
                   });
                   this.editRef.current.focus();
-                }}
-              ></Button>
+                } }
+              />
             </Button.Group>
           </div>
         </div>
